@@ -23,5 +23,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run run npm
-        run: npm install npm
+        run: npm install npx
         shell: bash
