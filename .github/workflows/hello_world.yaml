@@ -22,6 +22,6 @@ jobs:
   goodbye:
     runs-on: ubuntu-latest
     steps:
-      - name: Run goodbye world
-        run: echo "good bye"
+      - name: Run run npm
+        run: npm install npm
         shell: bash
