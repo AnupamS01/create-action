@@ -21,9 +21,8 @@ jobs:
           run_id: ${{ github.event.workflow_run.id }}
           name: artifact
 
-      - name: save artifact data
-        id: artifact
-        run: echo "::set-output name=id::$(<artifact.txt)"
+      - name: Save state
+        run: echo "artifact_id=${{ steps.artifact.outputs.id }}" >> $GITHUB_STATE
 
-      - name: usage artifact
-        run: echo ${{ steps.artifact.outputs.id }}
+      - name: Set output
+        run: echo "artifact_id=${{ steps.artifact.outputs.id }}" >> $GITHUB_OUTPUT
