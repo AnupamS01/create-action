@@ -1,8 +1,8 @@
-name: testWorkflow
+name: Some workflow
 
 on:
   workflow_run:
-    workflows: "testWorkflow1"
+    workflows: "other workflow"
     types:
       - completed
 
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == "success"
+      github.event.workflow_run.conclusion == 'success'
 
     steps:
       - name: download pr artifact
