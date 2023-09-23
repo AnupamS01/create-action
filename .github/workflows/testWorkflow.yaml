@@ -1,0 +1,29 @@
+name: testWorkflow
+
+on:
+  workflow_run:
+    workflows: "testWorkflow1"
+    types:
+      - completed
+
+jobs:
+  some-job:
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == "success"
+
+    steps:
+      - name: download pr artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: ${{ github.event.workflow_run.workflow_id }}
+          run_id: ${{ github.event.workflow_run.id }}
+          name: artifact
+
+      - name: save artifact data
+        id: artifact
+        run: echo "::set-output name=id::$(<artifact.txt)"
+
+      - name: usage artifact
+        run: echo ${{ steps.artifact.outputs.id }}
