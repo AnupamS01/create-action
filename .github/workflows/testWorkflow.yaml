@@ -1,8 +1,8 @@
-name: Some workflow
+name: testWorkflow
 
 on:
   workflow_run:
-    workflows: "other workflow"
+    workflows: "testWorkflow2"
     types:
       - completed
 
