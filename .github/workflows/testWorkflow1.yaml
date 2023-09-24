@@ -7,9 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create _site
-        run: |
-          echo "; echo 'attacker controlled code'; #" > _site.zip
+      - name: Create text file
+        run: echo "This is some text in the file." > file.txt
+
+      - name: Zip the text file
+        run: zip _site.zip file.txt
 
       - name: Upload artifact
         uses: actions/upload-artifact@v2
