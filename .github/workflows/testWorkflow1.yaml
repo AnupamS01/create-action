@@ -1,4 +1,4 @@
-name: testWorkflow1
+name: MAIN_PULL_REQUEST
 
 on: pull_request
 
