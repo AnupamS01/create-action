@@ -1,0 +1,30 @@
+name: PR Preview Deploy
+
+on:
+  workflow_run:
+    workflows: ['PR Preview Build']
+    types:
+      - completed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Artifacts
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: ${{ github.event.workflow_run.workflow_id }}
+        run_id: ${{ github.event.workflow_run.id }}
+
+    - name: Extract PR Number
+      id: pr
+      run: echo "::set-output name=id::$(<pr/pr-id.txt)"
+      shell: bash
+
+    # Add your additional steps here
+    - name: Step 3
+      run: echo "This is an additional step."
+
+    - name: Step 4
+      run: echo "This is another additional step."
